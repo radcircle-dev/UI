@@ -22,6 +22,7 @@
     <![endif]-->
   </head>
   <body>
+
     <div id="output">
     </div>
 
@@ -33,17 +34,18 @@
 
     <script>
     $(window).load(function(){
-
+        var post = window.location.hash.substr(1);
+        $('#output').html("Retrieving post " + post);
         $.ajax({
-          url: 'http://127.0.0.1:3000/posts/2',
+          url: 'http://127.0.0.1:3000/posts/' + post,
           dataType:'html',
           success: function(d)
           {
-            $('#output').html(d);
+            $('#output').append(d);
           },
           error: function(e)
           {
-            $('#output').html(e);
+            $('#output').append(e);
           }
         })
 
